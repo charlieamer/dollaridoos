@@ -4,17 +4,20 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { ConverterComponent } from './components/converter/converter.component';
+import { BackendService } from './services/backend.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ConverterComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule
   ],
-  providers: [],
+  providers: [BackendService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

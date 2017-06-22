@@ -1,15 +1,2 @@
-<form action="submit">
-  <!-- Instead of keyUp event we use ngModelChange event which gets triggered on any 
-       textual change including copy-paste, auto-filling, etc -->
-  <input type="text"  [(ngModel)]="initialValue" name="initial" (ngModelChange)="refresh()" >
-
-  <!-- Note we can use ngModelChange on other forms of input as well such as select -->
-  <select [(ngModel)]="initialKey" name="initialKey" (ngModelChange)="refresh()">
-    <option *ngFor="let key of currencyType" [ngValue]="key">{{ key }}</option>
-  </select>
-  <p>=</p> <input type="text"  [(ngModel)]="finalValue" name="final" readonly>
-  <select [(ngModel)]="finalKey" name="finalKey" (ngModelChange)="refresh()">
-    <option *ngFor="let key of currencyType" [ngValue]="key">{{ key }}</option>
-  </select>
-</form>
-{{ lastError }}
+<app-converter></app-converter>
+<app-converter></app-converter>
