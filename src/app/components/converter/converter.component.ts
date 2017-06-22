@@ -21,15 +21,13 @@ export class ConverterComponent {
 
   constructor(private backend: BackendService) {
     this.backend.getBases().subscribe((res) => {
-      if (res) {
-        this.currencyType = res.json();
-      }
+      this.currencyType = res;
     });
   }
 
   refresh() {
     this.backend.convert(this.initialKey, this.finalKey, this.initialValue).subscribe((val) => {
-      this.value = val.json();
+      this.value = val;
       this.finalValue = this.value.convertedAmount;
 
       // If we got to here successfuly, it means there was no error, so we clear the error string
