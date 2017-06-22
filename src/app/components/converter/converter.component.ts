@@ -21,7 +21,9 @@ export class ConverterComponent {
 
   constructor(private backend: BackendService) {
     this.backend.getBases().subscribe((res) => {
-      this.currencyType = res.json();
+      if (res) {
+        this.currencyType = res.json();
+      }
     });
   }
 

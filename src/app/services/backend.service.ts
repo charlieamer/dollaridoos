@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Response } from '@angular/http';
-import { Observable, Subject } from 'rxjs/';
+import { Observable, Subject, BehaviorSubject } from 'rxjs/';
 
 export interface ResponseType {
   convertedAmount: number;
@@ -12,18 +12,19 @@ export interface ResponseType {
 @Injectable()
 export class BackendService {
 
-  subject = new Subject<Response>();
+  subject: BehaviorSubject<Response>;
 
   constructor(private http: Http) {
     console.log('napravio se backend service');
-    setInterval(() => {
-      this.http.get('http://localhost:5000/converter/list').subscribe(res => {
-        this.subject.next(res);
-      });
-    }, 5000);
   }
 
   getBases(): Observable<Response> {
+    if (!this.subject) {
+      this.subject = new BehaviorSubject<Response>(undefined);
+      this.http.get('http://localhost:5000/converter/list').subscribe(res => {
+        this.subject.next(res);
+      });
+    }
     return this.subject;
   }
 
